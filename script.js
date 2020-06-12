@@ -11,6 +11,7 @@ function readFile(file) {
 async function read(input) {
   const txtFile = await readFile(input.files[0]);
   let arrBySpaceSplit = [];
+  let finalArr = [];
 
   let arrByEnterSplit = txtFile.split("\n");
 
@@ -18,9 +19,14 @@ async function read(input) {
     arrBySpaceSplit = arrByEnterSplit
       .filter((el) => el.length > 1)
       .map((element) => {
-        return element.split(" ");
+        return element.split(" ").filter((el) => el.length > 1);
       });
-      alert(arrBySpaceSplit);
+
+    for (let i = 0; i < arrBySpaceSplit.length; i++) {
+      finalArr.push(arrBySpaceSplit[i].concat(arrBySpaceSplit[++i]));
+    }
+
+    console.log(finalArr);
   } else {
     arrBySpaceSplit = txtFile.trim().split(" ");
   }
