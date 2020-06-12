@@ -1,3 +1,4 @@
+window.prop = {};
 const uniqueWordsArr = document.querySelectorAll("th");
 
 function readFile(file) {
@@ -26,6 +27,8 @@ async function read(input) {
       finalArr.push(arrBySpaceSplit[i].concat(arrBySpaceSplit[++i]));
     }
 
+    window.prop.testCreate(finalArr[0]);
+
     console.log(finalArr);
   } else {
     arrBySpaceSplit = txtFile.trim().split(" ");
@@ -35,3 +38,17 @@ async function read(input) {
 function onSubmit() {
   console.log("heu");
 }
+
+window.prop.testCreate = function (arr) {
+  console.log("HEE:", arr.length);
+  for (let index = 0; index < arr.length; index++) {
+    let tr = document.createElement("tr");
+    let td = document.createElement("td");
+    td.innerHTML = arr[index];
+    let td2 = document.createElement("td");
+    td2.appendChild(document.createElement("textarea"));
+    tr.appendChild(td);
+    tr.appendChild(td2);
+    document.getElementById("test").appendChild(tr);
+  }
+};
